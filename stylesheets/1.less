@@ -1,0 +1,67 @@
+@import "flex-mixins.less";
+
+// just a couple of mixins and a variable
+.fullSize {
+	height: 100%;
+	width: 100%;
+}
+
+@section-margin: 0.4em;
+@toolbar_height: 2.625rem;
+
+html , body , header , footer , section , article , aside  {
+	.display-flex ();
+	.flex (0 , 0 , auto);
+}
+
+html {
+	.fullSize();
+	font-size: 14px;
+	font-family: Helvetica, sans-serif; 
+}
+
+body {
+	.fullSize();
+	margin: 0;
+	padding: 0;
+	.flex-direction-col ();
+	overflow: hidden;
+}
+
+header , footer {
+	background: #1d1b1b;
+	width: 100%;
+	height: @toolbar_height;
+	.flex-direction-row ();
+	.flex (0 , 0 , @toolbar_height);
+}
+
+section {
+	.flex (1 , 1 , auto);
+	width: 100%;
+	@media (orientation: portrait) {
+		.flex-direction-col ();	
+	}
+}
+
+article , aside {
+	margin: @section-margin;
+	border-radius: 1em;
+	.flex-direction-col();
+	.justify-content-center();
+	background-color: #D5D5D5;
+	padding: @section-margin*2;
+}
+
+article {
+	.flex (1 , 1 , 62%);
+	margin-right: @section-margin / 2;
+}
+
+aside {
+	.flex (1 , 1 , 38%);
+	margin-left: @section-margin / 2;
+	@media (orientation: portrait) {
+		.flex (1 , 1 , 19%);	
+	}
+}
